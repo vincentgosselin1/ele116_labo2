@@ -1,5 +1,5 @@
 package labo2;
 
 public interface Visitable {
-	public Noeud accept(Visiteur visiteur);
+	public void accept(VisitorIF visiteur);
 }

@@ -108,18 +108,18 @@ public class LecteurXML{
 			}
 			else if(bchapitre)
 			{
-				chapitre = new Chapitre(livre);
-				livre.AjouterChapitres(chapitre);
+				chapitre = new Chapitre();
 				bchapitre = false;
 			}
 			else if(btitre_chapitre)
 			{
 				chapitre.definirTitre(new String(ch, start, length));
+				livre.ajouterChapitre(chapitre);
 				btitre_chapitre = false;
 			}
 			else if(bparagraphe)
 			{
-				paragraphe = new Paragraphe(chapitre);
+				paragraphe = new Paragraphe();
 				paragraphe.definirContenu(new String(ch, start, length));
 				chapitre.ajouterParagraphe(paragraphe);
 				bparagraphe = false;

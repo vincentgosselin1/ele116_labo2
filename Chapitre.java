@@ -1,11 +1,15 @@
 package labo2;
 
-public class Chapitre extends Noeud{
+import java.util.ArrayList;
+import java.util.List;
+
+public class Chapitre implements Visitable{
 	private String titre_chapitre;
+	private Visitable parent;
+	private List<Visitable> enfants;
 	
-	Chapitre(Livre livre)
+	Chapitre()
 	{
-		super(livre);
 		this.titre_chapitre = new String();
 	}
 	
@@ -15,11 +19,35 @@ public class Chapitre extends Noeud{
 	}
 	public void ajouterParagraphe(Paragraphe paragraphe)
 	{
-		this.ajouterEnfant(paragraphe);
+		if(enfants==null)
+		{
+			enfants = new ArrayList<Visitable>();
+		}
+		paragraphe.setParent(this);
+		this.enfants.add(paragraphe);
 	}
 	public String getTitre()
 	{
 		return this.titre_chapitre;
 	}
+	public Visitable obtenirParent(){
+		return parent;
+	}
+	public void setParent(Livre livre)
+	{
+		this.parent=livre;
+	}
+	public List<Visitable> obtenirEnfants(){
+		return this.enfants;
+	}
 
+	@Override
+	public void accept(VisitorIF visiteur) {
+		// TODO Auto-generated method stub
+		visiteur.visit(this);
+		for(Visitable paragraphes : this.obtenirEnfants()){
+			paragraphes.accept(visiteur);
+		}
+		
+	}
 }

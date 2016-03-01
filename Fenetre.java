@@ -95,8 +95,8 @@ public class Fenetre extends JFrame implements ActionListener, MenuListener{
 		if(e.getSource().equals(tabMatieres))
 		{
 			System.out.println("La table de matieres");
-			VisiteurTable v = new VisiteurTable(lecteur);
-			v.htmlBuilder();
+			VisiteurTable v = new VisiteurTable();
+			lecteur.getLivre().accept(v);
 			htmlPage.setText(v.gethtmlPage());
 			toolPanel.add(htmlPage);
 			this.add(toolPanel);
@@ -104,8 +104,8 @@ public class Fenetre extends JFrame implements ActionListener, MenuListener{
 		else if(e.getSource().equals(livreEntier))
 		{
 			System.out.println("Le Livre entier!");
-			VisitreLivreComplet v = new VisitreLivreComplet(lecteur);
-			v.htmlBuilder();
+			VisitreLivreComplet v = new VisitreLivreComplet();
+			lecteur.getLivre().accept(v);
 			htmlPage.setText(v.gethtmlPage());
 			toolPanel.add(htmlPage);
 			this.add(toolPanel);

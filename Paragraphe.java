@@ -1,11 +1,12 @@
 package labo2;
 
-public class Paragraphe extends Noeud{
+public class Paragraphe implements Visitable{
 	private String contenu;
+	private Visitable parent;
 	
-	Paragraphe(Chapitre chapitre)
+	
+	Paragraphe()
 	{
-		super(chapitre);
 		contenu = new String();
 	}
 	public void definirContenu(String contenu)
@@ -15,4 +16,17 @@ public class Paragraphe extends Noeud{
 	public String getContenu(){
 		return contenu;
 	}
+	public Visitable obtenirParent(){
+		return parent;
+	}
+	public void setParent(Chapitre chapitre)
+	{
+		this.parent=chapitre;
+	}
+	@Override
+	public void accept(VisitorIF visiteur) {
+		// TODO Auto-generated method stub
+		visiteur.visit(this);
+	}
+	
 }
